@@ -13,6 +13,8 @@ import javax.inject.Inject;
 
 public class CartController extends HttpServlet {
 		private static final long serialVersionUID = 1L;
+		
+		//DB connection 
 		private DBConnection dbConnection;
 
 		@Inject
@@ -23,13 +25,15 @@ public class CartController extends HttpServlet {
 			bookDAO = new BookDAO(dbConnection.getConnection());
     }
 
-		public void destroy() {
-			dbConnection.disconnect();
-		}
+	public void destroy() {
+		dbConnection.disconnect();
+	}
 
     public CartController() {
         super();
-    }
+    }   // DB connection close
+    
+  
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -44,7 +48,10 @@ public class CartController extends HttpServlet {
 			switch(action) {
 				case "/addcart":
 					 addToCart(request, response);
-           break;
+					 break;
+				case "/delete":
+					deleteFromCart(request, response); 
+					break; 
         default:
            break;
 			}
@@ -85,5 +92,17 @@ public class CartController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
+	}
+	
+	private void deleteFromCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession(); 
+		int id = Integer.parseInt(request.getParameter("index")); //parameter is always a string
+		
+		//assigning to shopping cart will requires type casting
+		ShoppingCart shoppingCart = null; 
+		Object objCartBean = session.getAttribute("cart"); 
+		shoppingCart = (ShoppingCart)objCartBean;
+		
+		
 	}
 }

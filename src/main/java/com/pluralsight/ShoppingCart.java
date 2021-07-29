@@ -3,6 +3,9 @@ package com.pluralsight;
 import java.util.ArrayList;
 import javax.inject.Inject;
 
+/*
+ * Model class
+ * */
 public class ShoppingCart {
  @Inject
  private ArrayList<CartItem> cartItems = new ArrayList<CartItem>();
@@ -52,5 +55,13 @@ public class ShoppingCart {
   }
   setOrderTotal(dblTotal);
  }
+ 
+ public void deleteCartItem(int index) {
+	 try {
+		 cartItems.remove(index);
+	 } catch (IndexOutOfBoundsException e) {
+		 System.err.print(e);
+	 } 
+ } 
 
 }
