@@ -31,7 +31,7 @@
 
       	 			<c:forEach items="${cart.cartItems}" var="cartItem">
                   <tr>
-                  	<form action ="/cart/update" name="cart-form">
+                  	<form name="cart_form" action ="/cart/update">
                       <td> ${ cartItem.getTitle() } </td>
                       <td> ${ cartItem.getAuthor() } </td>
                       <td> <fmt:formatNumber value = "${ cartItem.getPrice() }" type = "currency"/>  </td>
