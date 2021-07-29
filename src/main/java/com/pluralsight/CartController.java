@@ -52,8 +52,8 @@ public class CartController extends HttpServlet {
 				case "/delete":
 					deleteFromCart(request, response); 
 					break; 
-        default:
-           break;
+		        default:
+		           break;
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -102,6 +102,7 @@ public class CartController extends HttpServlet {
 		ShoppingCart shoppingCart = null; 
 		Object objCartBean = session.getAttribute("cart"); 
 		shoppingCart = (ShoppingCart)objCartBean;
+		shoppingCart.deleteCartItem(id);
 		
 		
 	}
