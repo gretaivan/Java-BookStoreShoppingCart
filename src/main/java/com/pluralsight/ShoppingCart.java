@@ -62,6 +62,16 @@ public class ShoppingCart {
 	 } catch (IndexOutOfBoundsException e) {
 		 System.err.print(e);
 	 } 
- } 
+ }
+ 
+ public void updateCartItem(int index, int quantity) {
+	 try {
+		 CartItem item = cartItems.get(index); 
+		 item.setQuantity(quantity);
+	 } catch (IndexOutOfBoundsException e) {
+		 System.err.print(e);
+	 }	 
+ }
+ 
 
 }
